@@ -219,8 +219,6 @@ public:
     if (hours_worked > 40){
       Total_benefits = (hours_worked - 40) * hourly_rate * 0.5;
     }
-
-    return Total_benefits;
   }
 
   void display_employees_benefits(){

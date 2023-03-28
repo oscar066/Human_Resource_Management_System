@@ -133,21 +133,23 @@ Employee* Employee::search_employee(int employee_id) {
 void Employee::search_and_display_employee(int employee_id) {
   Employee* employee = search_employee(employee_id);
   if (employee != nullptr) {
-    cout << "-------------------------------------------------" << endl;
+    cout << "------------------------------------------" << endl;
     cout << "EMPLOYEE FOUND " << endl;
-    cout << "-------------------------------------------------" << endl;
+    cout << "------------------------------------------" << endl;
     cout << "Employee found: " << endl;
     cout << "Employee ID: " << employee->employee_id << endl;
     cout << "First Name: " << employee->first_name << endl;
     cout << "Last Name: " << employee->last_name << endl;
     cout << "Email: " << employee->email << endl;
     cout << "Phone Number: " << employee->phone_number << endl;
-    cout << "-------------------------------------------------" << endl;
+    cout << "------------------------------------------" << endl;
+    cout << "END OF SEARCH RESULTS" << endl;
+    cout << "------------------------------------------" << endl;
     cout << endl;
   } else {
-    cout << "-------------------------------------------------" << endl;
+    cout << "------------------------------------------" << endl;
     cout << "Employee not found." << endl;
-    cout << "-------------------------------------------------" << endl;
+    cout << "------------------------------------------" << endl;
     cout<<endl;
   }
 }
@@ -326,8 +328,8 @@ int main() {
     employee_list->display_employees();
 
     // Display all employees' pay
-    //Payroll * payroll = new Payroll(1, "Martin", "Peter", "martinpeter@gmail.com" , "+254-765-589-559", 40, 1000);
-    //payroll->display_employees_pay(); 
+    Payroll * payroll = new Payroll(1, "Martin", "Peter", "martinpeter@gmail.com" , "+254-765-589-559", 40, 1000);
+    payroll->display_employees_pay(); 
 
     // Display all employees' benefits
     //Benefits * benefits = new Benefits(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 40, 1000);
