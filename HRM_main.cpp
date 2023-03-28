@@ -12,10 +12,10 @@ int main() {
 
     while (true) {
         int choice;
+        cout << "\n--------------------------------------------" << endl;
+        cout << "\tWelcome to MIKASA HRM system" << endl;
         cout << "--------------------------------------------" << endl;
-        cout << "\tWelcome to the HRM system!" << endl;
-        cout << "--------------------------------------------" << endl;
-        cout << "Select an action:" << endl;
+        cout << "Select an action:\n" << endl;
         cout << "1. Add employee" << endl;
         cout << "2. Delete employee" << endl;
         cout << "3. Search employee" << endl;
@@ -23,7 +23,10 @@ int main() {
         cout << "5. Display all employees' pay" << endl;
         cout << "6. Display all employees' benefits" << endl;
         cout << "7. Display all employees' performance" << endl;
-        cout << "8. Quit" << endl;
+        cout << "8. Quit\n" << endl;
+        cout << "--------------------------------------------" << endl;
+        cout << " \tEND OF MENU " << endl;
+        cout << "--------------------------------------------" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
