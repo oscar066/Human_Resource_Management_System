@@ -190,39 +190,41 @@ void Employee::display_employees() {
 
 // Define the Payroll class
 class Payroll : public Employee {
-  public:
-  Payroll(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked);
-  
-  void display_employees_pay(){
-    float hours_worked = get_hours_worked();
-    float hourly_rate = get_hourly_rate();
-    string first_name = get_first_name();
-    string last_name = get_last_name();
-    int employee_id = get_employee_id();
+public:
+    Payroll(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked)
+    : Employee(employee_id, first_name, last_name, email, phone_number, hourly_rate, hours_worked) {}
 
-    cout << "------------------------------------------" << endl;
-    cout << " MIKASA PAYROLL DISPLAY " << endl;
-    cout << "------------------------------------------" << endl;
+    void display_employees_pay() {
+        //float hours_worked = get_hours_worked();
+        //float hourly_rate = get_hourly_rate();
+        string first_name = get_first_name();
+        string last_name = get_last_name();
+        int employee_id = get_employee_id();
 
-    cout << "Employee ID\tFirst Name\tLast Name\tTotal Pay (Ksh)" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "    \t\tMIKASA PAYROLL DISPLAY " << endl;
+        cout << "--------------------------------------------------------------" << endl;
 
-    Employee* current_employee = this;
-    while (current_employee != nullptr) {
-      cout << current_employee->get_employee_id() << "\t\t" << current_employee->get_first_name() << "\t\t" << current_employee->get_last_name() << "\t\t" << (hours_worked * hourly_rate) << endl;
-      current_employee = current_employee->get_next_employee();
+        cout << "Employee ID\tFirst Name\tLast Name\tTotal Pay (Ksh)" << endl;
+
+        Employee* current_employee = this;
+        while (current_employee != nullptr) {
+            cout << current_employee->get_employee_id() << "\t\t" << current_employee->get_first_name() << "\t\t" << current_employee->get_last_name() <<  "\t\t" << current_employee->get_hours_worked() * current_employee->get_hourly_rate() << endl;
+            current_employee = current_employee->get_next_employee();
+        }
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "    \t\tEND OF PAYROLL DISPLAY." << endl;
+        cout << "--------------------------------------------------------------" << endl;
+        cout << endl;
     }
-    cout << "------------------------------------------" << endl;
-    cout << "END OF PAYROLL DISPLAY." << endl;
-    cout << "------------------------------------------" << endl;
-    cout << endl;
-  }
 };
+
 
 // Define the Benefits class
 class Benefits : public Employee {
 public:
-
-  Benefits(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked);
+  Benefits(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked)
+    : Employee(employee_id, first_name, last_name, email, phone_number, hourly_rate, hours_worked) {}
 
   float calculate_benefits() {
       float hours_worked = get_hours_worked();
@@ -235,18 +237,18 @@ public:
   }
     
   void display_employees_benefits() {
-      cout << "------------------------------------------" << endl;
-      cout << " MIKASA BENEFITS DISPLAY " << endl;
-      cout << "------------------------------------------" << endl;
+      cout << "--------------------------------------------------------------" << endl;
+      cout << "    \t\tMIKASA BENEFITS DISPLAY " << endl;
+      cout << "--------------------------------------------------------------" << endl;
       cout << "Employee ID\tFirst Name\tLast Name\tBenefits (Ksh)" << endl;
       Employee* current_employee = this;
       while (current_employee != nullptr) {
           cout << current_employee->get_employee_id() << "\t\t" << current_employee->get_first_name() << "\t\t" << current_employee->get_last_name() << "\t\t" << calculate_benefits() << endl;
           current_employee = current_employee->get_next_employee();
       }
-      cout << "------------------------------------------" << endl;
-      cout << "END OF BENEFITS DISPLAY." << endl;
-      cout << "------------------------------------------" << endl;
+      cout << "--------------------------------------------------------------" << endl;
+      cout << "    \t\tEND OF BENEFITS DISPLAY " << endl;
+      cout << "--------------------------------------------------------------" << endl;
       cout << endl;
   }
 };
@@ -255,8 +257,8 @@ public:
 // Define the Performance class
 class Performance : public Employee {
   public:
-
-  Performance(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked);
+    Performance(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked)
+    : Employee(employee_id, first_name, last_name, email, phone_number, hourly_rate, hours_worked) {}
 
   void calculate_performance(){
     float hours_worked = Employee::get_hours_worked();
@@ -277,9 +279,9 @@ class Performance : public Employee {
     string last_name = get_last_name();
     int employee_id = get_employee_id();
     
-    cout << "------------------------------------------" << endl;
-    cout << " MIKASA PERFORMANCE DISPLAY " << endl;
-    cout << "------------------------------------------" << endl;
+    cout << "--------------------------------------------------------------" << endl;
+    cout << "    \t\tMIKASA PERFORMANCE DISPLAY " << endl;
+    cout << "--------------------------------------------------------------" << endl;
 
     cout << "Employee ID\tFirst Name\tLast Name\tPerformance" << endl;
 
@@ -289,9 +291,9 @@ class Performance : public Employee {
       calculate_performance();
       current_employee = current_employee->get_next_employee();
     }
-    cout << "------------------------------------------" << endl;
-    cout << "END OF PERFORMANCE DISPLAY." << endl;
-    cout << "------------------------------------------" << endl;
+    cout << "--------------------------------------------------------------" << endl;
+    cout << "    \t\tEND OF PERFORMANCE DISPLAY " << endl;
+    cout << "--------------------------------------------------------------" << endl;
     cout << endl;
   }
 };
@@ -307,8 +309,8 @@ class Attendance{
 
 int main() {
     Employee* employee_list = new Employee(1, "Martin", "Peter", "martinpeter@gmail5.com", "+254-765-589-559", 40, 1000);
-    employee_list->add_employee(new Employee(2, "Abigael", "Waithera", "abigaelwaithera1@gmail.com", "+254-735-555-877", 40, 1000));
-    employee_list->add_employee(new Employee(3, "Oscar", "Karuga", "oscarkaruga4@gmail.com", "+254-732-555-743", 40, 1000));
+    employee_list->add_employee(new Employee(2, "Abigael", "Waithera", "abigaelwaithera1@gmail.com", "+254-735-555-877", 80, 1000));
+    employee_list->add_employee(new Employee(3, "Oscar", "Karuga", "oscarkaruga4@gmail.com", "+254-732-555-743", 60, 1000));
     employee_list->add_employee(new Employee(4, "Naomi", "Amadi", "naomiamadi3@gmail.com", "+254-715-555-123", 40, 1000));
     employee_list->add_employee(new Employee(5, "Glory", "Karimi", "glorykarimi@gmail2.com", "+254-730-555-463", 40, 1000));
 
@@ -328,15 +330,21 @@ int main() {
     employee_list->display_employees();
 
     // Display all employees' pay
-    Payroll * payroll = new Payroll(1, "Martin", "Peter", "martinpeter@gmail.com" , "+254-765-589-559", 40, 1000);
-    payroll->display_employees_pay(); 
+    Payroll * payroll_list = new Payroll(1, "Martin", "Peter", "martinpeter@gmail.com" , "+254-765-589-559", 40, 1000);
+    payroll_list->add_employee(new Payroll(2, "Abigael", "Waithera","abigaelwaithera1@gmail.com","+254-735-555-877", 80, 1000));
+    payroll_list->add_employee(new Payroll(3, "Oscar", "Karuga","oscarkaruga4@gmail.com", "+254-732-555-743", 60, 1000));
+    payroll_list->display_employees_pay(); 
 
     // Display all employees' benefits
-    //Benefits * benefits = new Benefits(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 40, 1000);
-    //benefits->display_employees_benefits();
+    Benefits * benefits_list = new Benefits(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 46, 1000);
+    benefits_list->add_employee(new Benefits(2, "Naomi", "Amadi", "naomiamadi3@gmail.com", "+254-715-555-123", 53, 1000));
+    benefits_list->display_employees_benefits();
 
     // Display all employees' performance
-    //Performance * performance = new Performance(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 40, 1000);
+    Performance * performance_list = new Performance(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 40, 1000);
+    performance_list->add_employee(new Performance(2, "Glory", "karimi", "glorykarimi@gmail2.com", "+254-730-555-463", 40, 1000));
+    performance_list->display_employees_performance();
+
     //performance->display_employees_performance();
 
     return 0;
