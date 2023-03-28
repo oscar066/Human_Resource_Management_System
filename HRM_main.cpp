@@ -14,7 +14,7 @@ int main() {
         int choice;
         cout << "\n--------------------------------------------" << endl;
         cout << "\tWelcome to MIKASA HRM system" << endl;
-        cout << "--------------------------------------------" << endl;
+        cout << "----------------------------------------------" << endl;
         cout << "Select an action:\n" << endl;
         cout << "1. Add employee" << endl;
         cout << "2. Delete employee" << endl;
@@ -23,10 +23,11 @@ int main() {
         cout << "5. Display all employees' pay" << endl;
         cout << "6. Display all employees' benefits" << endl;
         cout << "7. Display all employees' performance" << endl;
-        cout << "8. Quit\n" << endl;
-        cout << "--------------------------------------------" << endl;
+        cout << "8. Display all employees' attendance track" << endl;
+        cout << "9. Quit\n" << endl;
+        cout << "----------------------------------------------" << endl;
         cout << " \tEND OF MENU " << endl;
-        cout << "--------------------------------------------" << endl;
+        cout << "----------------------------------------------" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -174,6 +175,36 @@ int main() {
                 break;
             }
             case 8: {
+                int id;
+                string first_name, last_name, email, phone_number;
+                float hourly_rate;
+                int hours_worked;
+                cout << "Enter employee details:" << endl;
+                cout << "ID: ";
+                cin >> id;
+                cout << "First name: ";
+                cin >> first_name;
+                cout << "Last name: ";
+                cin >> last_name;
+                cout << "Email: ";
+                cin >> email;
+                cout << "Phone number: ";
+                cin >> phone_number;
+                cout << "Hourly rate: ";
+                cin >> hourly_rate;
+                cout << "Hours worked: ";
+                cin >> hours_worked;
+                Attendance * attendance_list = nullptr;
+                if (attendance_list == nullptr) {
+                    attendance_list = new Attendance(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked);
+                } else {
+                    attendance_list->add_employee(new Attendance(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked));
+                }
+                attendance_list->display_employees_attendance();
+                delete attendance_list;
+                break;
+            }
+            case 9: {
                 cout << "Goodbye!\n" << endl;
                 return 0;
             }

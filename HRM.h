@@ -294,19 +294,47 @@ public:
 
 
 // Define the Attendance tracking class
-//some dummy code
-class Attendance{
+class Attendance : public Employee {
   public:
+  Attendance(int employee_id, string first_name, string last_name, string email, string phone_number, float hourly_rate, int hours_worked)
+  : Employee(employee_id, first_name, last_name, email, phone_number, hourly_rate, hours_worked) {}
+
   void track_attendance(){
-    cout<<"Attendance has been tracked"<<endl;
+    int hours_worked = get_hours_worked();
+    if (hours_worked >= 40){
+      cout<<"On track"<<endl;
+    }
+    else{
+      cout<<"Not on track"<<endl;
+    }
+  }
+
+  void display_employees_attendance(){
+    cout << "--------------------------------------------------------------" << endl;
+    cout << "    \t\tMIKASA ATTENDANCE DISPLAY " << endl;
+    cout << "--------------------------------------------------------------" << endl;
+
+    cout << "Employee ID\tFirst Name\tLast Name\tAttendance" << endl;
+    cout<<  "-----------\t----------\t---------\t--------------" << endl;
+
+    Employee* current_employee = this;
+    while (current_employee != nullptr) {
+      cout << current_employee->get_employee_id() << "\t\t" << current_employee->get_first_name() << "\t\t" << current_employee->get_last_name() << "\t\t";
+      track_attendance();
+      current_employee = current_employee->get_next_employee();
+    }
+    cout << "--------------------------------------------------------------" << endl;
+    cout << "    \t\tEND OF ATTENDANCE DISPLAY " << endl;
+    cout << "--------------------------------------------------------------\n" << endl;
+    cout << endl;
   }
 };
 
 // Define the HR class
-//some dummy code
 class HR{
   public:
   void manage_employee(){
     cout<<"Employee has been managed"<<endl;
   }
 };
+
