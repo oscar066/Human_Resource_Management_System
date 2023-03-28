@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <string>
 
@@ -302,49 +303,186 @@ class Attendance{
   }
 };
 
+// Define the HR class
+//some dummy code
+class HR{
+  public:
+  void manage_employee(){
+    cout<<"Employee has been managed"<<endl;
+  }
+};
+
 int main() {
-    Employee* employee_list = new Employee(1, "Martin", "Peter", "martinpeter@gmail5.com", "+254-765-589-559", 40, 1000);
-    employee_list->add_employee(new Employee(2, "Abigael", "Waithera", "abigaelwaithera1@gmail.com", "+254-735-555-877", 80, 1000));
-    employee_list->add_employee(new Employee(3, "Oscar", "Karuga", "oscarkaruga4@gmail.com", "+254-732-555-743", 60, 1000));
-    employee_list->add_employee(new Employee(4, "Naomi", "Amadi", "naomiamadi3@gmail.com", "+254-715-555-123", 40, 1000));
-    employee_list->add_employee(new Employee(5, "Glory", "Karimi", "glorykarimi@gmail2.com", "+254-730-555-463", 40, 1000));
+    Employee* employee_list = nullptr;
 
-    // Display all employees
-    employee_list->display_employees();
+    while (true) {
+        int choice;
+        cout << "---------------------------------------------" << endl;
+        cout << "    \t\tMIKASA HR SYSTEM " << endl;
+        cout << "---------------------------------------------" << endl;
+        cout << "Select an action:" << endl;
+        cout << "1. Add employee" << endl;
+        cout << "2. Delete employee" << endl;
+        cout << "3. Search employee" << endl;
+        cout << "4. Display all employees" << endl;
+        cout << "5. Display all employees' pay" << endl;
+        cout << "6. Display all employees' benefits" << endl;
+        cout << "7. Display all employees' performance" << endl;
+        cout << "8. Quit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    // Searching for a specific employee
-    employee_list->search_and_display_employee(3);
-
-    //Searching for an Employee not in the Mikasa system
-    employee_list->search_and_display_employee(8);
-
-    // Deleting an employee after they leave the company ,retire or are fired
-    employee_list->delete_employee(3);
-
-    // Adding a new employee
-    employee_list->add_employee(new Employee(6, "Frida", "Wahu", "fridawahu3@gmail.com", "+254-765-119-530", 40, 1000));
-
-    // Display all employees after adding a new employee and deleting an employee 
-    employee_list->display_employees();
-
-    // Display all employees' pay
-    Payroll * payroll_list = new Payroll(1, "Martin", "Peter", "martinpeter@gmail.com" , "+254-765-589-559", 40, 1000);
-    payroll_list->add_employee(new Payroll(2, "Abigael", "Waithera","abigaelwaithera1@gmail.com","+254-735-555-877", 80, 1000));
-    payroll_list->add_employee(new Payroll(3, "Oscar", "Karuga","oscarkaruga4@gmail.com", "+254-732-555-743", 60, 1000));
-    payroll_list->display_employees_pay(); 
-
-    // Display all employees' benefits
-    Benefits * benefits_list = new Benefits(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 46, 1000);
-    benefits_list->add_employee(new Benefits(2, "Naomi", "Amadi", "naomiamadi3@gmail.com", "+254-715-555-123", 53, 1000));
-    benefits_list->display_employees_benefits();
-
-    // Display all employees' performance
-    Performance * performance_list = new Performance(1, "Martin", "Peter", "martinpeter@gmail.com", "+254-765-589-559", 70, 1000);
-    performance_list->add_employee(new Performance(2, "Glory", "karimi", "glorykarimi@gmail2.com", "+254-730-555-463", 32, 1000));
-    performance_list->add_employee(new Performance(3, "Frida", "Wahu", "fridawahu3@gmail.com", "+254-765-119-530", 20, 1000));
-    performance_list->display_employees_performance();
-
-    //performance->display_employees_performance();
-
-    return 0;
+        switch (choice) {
+            case 1: {
+                int id;
+                string first_name, last_name, email, phone_number;
+                float hourly_rate;
+                int hours_worked;
+                cout << "Enter employee details:" << endl;
+                cout << "ID: ";
+                cin >> id;
+                cout << "First name: ";
+                cin >> first_name;
+                cout << "Last name: ";
+                cin >> last_name;
+                cout << "Email: ";
+                cin >> email;
+                cout << "Phone number: ";
+                cin >> phone_number;
+                cout << "Hourly rate: ";
+                cin >> hourly_rate;
+                cout << "Hours worked: ";
+                cin >> hours_worked;
+                if (employee_list == nullptr) {
+                    employee_list = new Employee(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked);
+                } else {
+                    employee_list->add_employee(new Employee(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked));
+                }
+                cout << "Employee added." << endl;
+                break;
+            }
+            case 2: {
+                int id;
+                cout << "Enter employee ID to delete: ";
+                cin >> id;
+                if (employee_list != nullptr) {
+                    employee_list->delete_employee(id);
+                }
+                break;
+            }
+            case 3: {
+                int id;
+                cout << "Enter employee ID to search: ";
+                cin >> id;
+                if (employee_list != nullptr) {
+                    employee_list->search_and_display_employee(id);
+                }
+                break;
+            }
+            case 4: {
+                if (employee_list != nullptr) {
+                    employee_list->display_employees();
+                }
+                break;
+            }
+            case 5: {
+                int id;
+                string first_name, last_name, email, phone_number;
+                float hourly_rate;
+                int hours_worked;
+                cout << "Enter employee details:" << endl;
+                cout << "ID: ";
+                cin >> id;
+                cout << "First name: ";
+                cin >> first_name;
+                cout << "Last name: ";
+                cin >> last_name;
+                cout << "Email: ";
+                cin >> email;
+                cout << "Phone number: ";
+                cin >> phone_number;
+                cout << "Hourly rate: ";
+                cin >> hourly_rate;
+                cout << "Hours worked: ";
+                cin >> hours_worked;
+                Payroll* payroll_list = nullptr;
+                if (payroll_list == nullptr) {
+                    payroll_list = new Payroll(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked);
+                } else {
+                    payroll_list->add_employee(new Payroll(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked));
+                }
+                payroll_list->display_employees_pay();
+                delete payroll_list;
+                break;
+            }
+            case 6: {
+                int id;
+                string first_name, last_name, email, phone_number;
+                float hourly_rate;
+                int hours_worked;
+                cout << "Enter employee details:" << endl;
+                cout << "ID: ";
+                cin >> id;
+                cout << "First name: ";
+                cin >> first_name;
+                cout << "Last name: ";
+                cin >> last_name;
+                cout << "Email: ";
+                cin >> email;
+                cout << "Phone number: ";
+                cin >> phone_number;
+                cout << "Hourly rate: ";
+                cin >> hourly_rate;
+                cout << "Hours worked: ";
+                cin >> hours_worked;
+                Benefits* benefits_list = nullptr;
+                if (benefits_list == nullptr) {
+                    benefits_list = new Benefits(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked);
+                } else {
+                    benefits_list->add_employee(new Benefits(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked));
+                }
+                benefits_list->display_employees_benefits();
+                delete benefits_list;
+                break;
+            }
+            case 7: {
+                int id;
+                string first_name, last_name, email, phone_number;
+                float hourly_rate;
+                int hours_worked;
+                cout << "Enter employee details:" << endl;
+                cout << "ID: ";
+                cin >> id;
+                cout << "First name: ";
+                cin >> first_name;
+                cout << "Last name: ";
+                cin >> last_name;
+                cout << "Email: ";
+                cin >> email;
+                cout << "Phone number: ";
+                cin >> phone_number;
+                cout << "Hourly rate: ";
+                cin >> hourly_rate;
+                cout << "Hours worked: ";
+                cin >> hours_worked;
+                Performance* performance_list = nullptr;
+                if (performance_list == nullptr) {
+                    performance_list = new Performance(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked);
+                } else {
+                    performance_list->add_employee(new Performance(id, first_name, last_name, email, phone_number, hourly_rate, hours_worked));
+                }
+                performance_list->display_employees_performance();
+                delete performance_list;
+                break;
+            }
+            case 8: {
+                cout << "Goodbye!" << endl;
+                break;
+            }
+            default: {
+                cout << "Invalid choice." << endl;
+                break;
+            }
+        }
+    }
 }
